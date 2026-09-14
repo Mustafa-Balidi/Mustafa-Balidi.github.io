@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mustafa Balidi — Frontend Developer & UI/UX Designer</title>
+<title>Mustafa Balidi — AI &amp; Machine Learning Engineer</title>
 <meta name="description" id="metaDesc" content="Frontend developer and UI/UX designer based in Damascus, building interfaces and applied machine learning systems.">
 <meta name="author" content="Mustafa Balidi">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Mustafa Balidi — Frontend Developer & UI/UX Designer">
-<meta property="og:description" content="Interfaces that are visually refined and technically sound, plus applied ML and LLM systems.">
+<meta property="og:title" content="Mustafa Balidi — AI &amp; Machine Learning Engineer">
+<meta property="og:description" content="Applied machine learning, deep learning and information retrieval, with a UI/UX background.">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/135384993?v=4">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%237aa2f7'/><text x='50' y='70' font-size='58' font-family='monospace' font-weight='700' text-anchor='middle' fill='%230d1017'>m</text></svg>">
@@ -331,40 +331,26 @@ footer{
 
       <article class="work-row">
         <div>
-          <h3>AgriSphere</h3>
-          <p class="work-kind" data-i18n="work.agri.kind">Team project · machine learning</p>
+          <h3>Biomedical IR System</h3>
+          <p class="work-kind" data-i18n="work.ir.kind">Academic project · NLP &amp; information retrieval</p>
         </div>
         <div>
-          <p data-i18n="work.agri.desc">An application for farmers that recommends planting windows and helps identify and treat plant diseases from photos of affected crops.</p>
-          <ul class="tags"><li>Python</li><li>Jupyter</li><li>Computer vision</li><li>Machine learning</li></ul>
+          <p data-i18n="work.ir.desc">An end-to-end retrieval system over a biomedical corpus: an NLTK preprocessing pipeline, TF-IDF vector space and BM25 inverted index baselines, then semantic retrieval with GloVe and BERT embeddings and RM3 query expansion — all compared on MAP, nDCG and precision at 10.</p>
+          <ul class="tags"><li>Python</li><li>NLTK</li><li>scikit-learn</li><li>PyTerrier</li><li>sentence-transformers</li><li>PyTorch</li><li>Gensim</li></ul>
+        </div>
+        <a class="work-link" href="https://github.com/Mustafa-Balidi/CodeToText-IR-System" data-i18n="work.link">View repository</a>
+      </article>
+
+      <article class="work-row">
+        <div>
+          <h3>AgriSphere</h3>
+          <p class="work-kind" data-i18n="work.agri.kind">Team project · computer vision &amp; full stack</p>
+        </div>
+        <div>
+          <p data-i18n="work.agri.desc">An application for farmers that recommends planting windows and diagnoses plant diseases from photos of affected crops, built as a Laravel service and a Flutter client around a classification model trained in Jupyter.</p>
+          <ul class="tags"><li>Python</li><li>Jupyter</li><li>Computer vision</li><li>Laravel</li><li>Flutter</li></ul>
         </div>
         <a class="work-link" href="https://github.com/Mustafa-Balidi/agri_sphere" data-i18n="work.link">View repository</a>
-      </article>
-
-      <article class="work-row">
-        <div>
-          <h3>PetHaven</h3>
-          <p class="work-kind" data-i18n="work.pet.kind">Personal project · web app</p>
-        </div>
-        <div>
-          <!-- EDIT: work.pet.desc in the dictionary below (en + ar) -->
-          <p data-i18n="work.pet.desc">A web application for pet adoption and care. Replace this sentence with what the app actually does and the problem it solves.</p>
-          <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
-        </div>
-        <a class="work-link" href="https://github.com/Mustafa-Balidi/PetHaven_v2" data-i18n="work.link">View repository</a>
-      </article>
-
-      <article class="work-row">
-        <div>
-          <h3>Fit</h3>
-          <p class="work-kind" data-i18n="work.fit.kind">Personal project · interface design</p>
-        </div>
-        <div>
-          <!-- EDIT: work.fit.desc in the dictionary below (en + ar) -->
-          <p data-i18n="work.fit.desc">Describe Fit here — what it is, who it is for, and what part of it you designed or built.</p>
-          <ul class="tags"><li>UI/UX</li><li>Figma</li><li>Frontend</li></ul>
-        </div>
-        <a class="work-link" href="https://github.com/Mustafa-Balidi/Fit" data-i18n="work.link">View repository</a>
       </article>
 
       <article class="work-row">
@@ -378,6 +364,20 @@ footer{
         </div>
         <a class="work-link" href="https://github.com/Mustafa-Balidi/TradingAgents" data-i18n="work.link">View repository</a>
       </article>
+
+      <article class="work-row">
+        <div>
+          <h3>PetHaven</h3>
+          <p class="work-kind" data-i18n="work.pet.kind">Personal project · frontend</p>
+        </div>
+        <div>
+          <!-- EDIT: work.pet.desc in the dictionary below (en + ar). The repo is still empty — push the code. -->
+          <p data-i18n="work.pet.desc">A web application for pet adoption and care. Replace this sentence with what the app actually does and the problem it solves.</p>
+          <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+        </div>
+        <a class="work-link" href="https://github.com/Mustafa-Balidi/PetHaven_v2" data-i18n="work.link">View repository</a>
+      </article>
+
     </section>
 
     <!-- ---------- stack ---------- -->
@@ -387,19 +387,30 @@ footer{
       </div>
 
       <div class="stack-group">
-        <h3 data-i18n="stack.design">Interface and design</h3>
-        <ul><li>HTML</li><li>CSS</li><li>Sass</li><li>Tailwind CSS</li><li>JavaScript</li><li>React</li><li>Figma</li><li>Stitch</li><li>Responsive layout</li><li>Design systems</li></ul>
+        <h3 data-i18n="stack.ml">Machine learning and deep learning</h3>
+        <ul><li>Python</li><li>PyTorch</li><li>scikit-learn</li><li>Neural networks</li><li>CNNs</li><li>Transformers</li><li>BERT</li><li>Fine-tuning</li><li>Model evaluation</li><li>Model deployment</li></ul>
       </div>
 
       <div class="stack-group">
-        <h3 data-i18n="stack.ml">Machine learning</h3>
-        <ul><li>Python</li><li>PyTorch</li><li>scikit-learn</li><li>LLM integration</li><li>Retrieval-augmented generation</li><li>Model deployment</li></ul>
+        <h3 data-i18n="stack.nlp">NLP and information retrieval</h3>
+        <ul><li>NLTK</li><li>PyTerrier</li><li>TF-IDF</li><li>BM25</li><li>GloVe</li><li>sentence-transformers</li><li>Query expansion (RM3)</li><li>Retrieval-augmented generation</li><li>MAP / nDCG evaluation</li></ul>
+      </div>
+
+      <div class="stack-group">
+        <h3 data-i18n="stack.data">Data and scientific computing</h3>
+        <ul><li>Pandas</li><li>NumPy</li><li>Matplotlib</li><li>Seaborn</li><li>Jupyter</li><li>BeautifulSoup</li></ul>
+      </div>
+
+      <div class="stack-group">
+        <h3 data-i18n="stack.design">Interface and design</h3>
+        <ul><li>HTML</li><li>CSS</li><li>Sass</li><li>Tailwind CSS</li><li>JavaScript</li><li>React</li><li>Figma</li><li>Stitch</li><li>Design systems</li></ul>
       </div>
 
       <div class="stack-group">
         <h3 data-i18n="stack.backend">Backend and systems</h3>
         <ul><li>Flask</li><li>FastAPI</li><li>Docker</li><li>Git</li><li>Linux (Ubuntu, CentOS)</li></ul>
       </div>
+
     </section>
 
     <!-- ---------- background ---------- -->
@@ -409,35 +420,33 @@ footer{
       </div>
 
       <div class="entry">
-        <!-- EDIT: real dates -->
-        <p class="when">20XX — 20XX</p>
+        <p class="when">2025 — 2026</p>
         <div>
-          <h3 data-i18n="bg.girlscript.role">Project Lead Intern</h3>
-          <p class="where">GirlScript Foundation</p>
-          <!-- EDIT: bg.girlscript.desc in the dictionary below (en + ar) -->
-          <p data-i18n="bg.girlscript.desc">Led a project team and coordinated contributors. Replace this with what you were responsible for and one concrete result.</p>
+          <h3 data-i18n="bg.edu.degree">Artificial Intelligence graduate</h3>
+          <!-- EDIT: bg.edu.org in the dictionary below — your university name -->
+          <p class="where" data-i18n="bg.edu.org">Your university</p>
+          <p data-i18n="bg.edu.desc">Specialised in machine learning, deep learning, natural language processing and information retrieval, with a graduation project building and evaluating a full biomedical search system.</p>
         </div>
       </div>
 
       <div class="entry">
-        <!-- EDIT: real dates -->
-        <p class="when">20XX — 20XX</p>
+        <p class="when" data-i18n="bg.cert.when">Certified</p>
         <div>
-          <!-- EDIT: bg.edu.* in the dictionary below (en + ar) -->
-          <h3 data-i18n="bg.edu.degree">Your degree</h3>
-          <p class="where" data-i18n="bg.edu.org">Your university</p>
-          <p data-i18n="bg.edu.desc">Field of study, and anything worth noting — a thesis, a focus area, a relevant course.</p>
+          <h3 data-i18n="bg.cert.title">UI/UX Design certificates</h3>
+          <p class="where">Google</p>
+          <p data-i18n="bg.cert.desc">Google certification in user experience design: user research, wireframing, prototyping and usability testing — the foundation behind the interfaces I build.</p>
         </div>
       </div>
 
       <div class="entry">
         <p class="when" data-i18n="bg.self.when">Ongoing</p>
         <div>
-          <h3 data-i18n="bg.self.title">Self-directed study</h3>
-          <p class="where" data-i18n="bg.self.org">Applied ML and LLM systems</p>
-          <p data-i18n="bg.self.desc">Working through retrieval-augmented generation, model deployment and system architecture, and bringing what I learn back into the interfaces I build.</p>
+          <h3 data-i18n="bg.self.title">Machine learning coursework</h3>
+          <p class="where">Stanford Online</p>
+          <p data-i18n="bg.self.desc">Working through Stanford coursework in machine learning and artificial intelligence alongside my own study of retrieval systems, model deployment and system architecture.</p>
         </div>
       </div>
+
     </section>
 
     <!-- ---------- contact ---------- -->
@@ -476,8 +485,8 @@ footer{
      ========================================================= */
   var I18N = {
     en: {
-      "doc.title": "Mustafa Balidi — Frontend Developer & UI/UX Designer",
-      "doc.desc": "Frontend developer and UI/UX designer based in Damascus, building interfaces and applied machine learning systems.",
+      "doc.title": "Mustafa Balidi — AI & Machine Learning Engineer",
+      "doc.desc": "Artificial intelligence graduate working in machine learning, deep learning and information retrieval, with a UI/UX design background.",
       "brand": "Mustafa Balidi",
       "nav.aria": "Sections",
       "nav.work": "Work",
@@ -495,8 +504,8 @@ footer{
 
       "hero.first": "Mustafa",
       "hero.last": "Balidi",
-      "hero.role": "Frontend developer and UI/UX designer,<br>working toward applied machine learning.",
-      "hero.lede": "I build interfaces that hold up on both sides of the screen — considered in design, careful in engineering — and I am learning how retrieval and LLM systems fit into real products.",
+      "hero.role": "Applied machine learning and information retrieval,<br>with a UI/UX design background.",
+      "hero.lede": "I build retrieval and deep learning systems — text pipelines, ranking models, semantic embeddings, and the evaluation that proves they work — and I bring a designer's eye to the interfaces that sit on top of them.",
       "facts.based": "Based in",
       "facts.basedValue": "Damascus, Syria",
       "facts.available": "Available for",
@@ -508,41 +517,43 @@ footer{
       "work.title": "Selected work",
       "work.count": "4 projects",
       "work.link": "View repository",
-      "work.agri.kind": "Team project · machine learning",
-      "work.agri.desc": "An application for farmers that recommends planting windows and helps identify and treat plant diseases from photos of affected crops.",
-      "work.pet.kind": "Personal project · web app",
-      "work.pet.desc": "A web application for pet adoption and care. Replace this sentence with what the app actually does and the problem it solves.",
-      "work.fit.kind": "Personal project · interface design",
-      "work.fit.desc": "Describe Fit here — what it is, who it is for, and what part of it you designed or built.",
+      "work.ir.kind": "Academic project · NLP &amp; information retrieval",
+      "work.ir.desc": "An end-to-end retrieval system over a biomedical corpus: an NLTK preprocessing pipeline, TF-IDF vector space and BM25 inverted index baselines, then semantic retrieval with GloVe and BERT embeddings and RM3 query expansion — all compared on MAP, nDCG and precision at 10.",
+      "work.agri.kind": "Team project · computer vision &amp; full stack",
+      "work.agri.desc": "An application for farmers that recommends planting windows and diagnoses plant diseases from photos of affected crops, built as a Laravel service and a Flutter client around a classification model trained in Jupyter.",
       "work.trading.kind": "Open source · study",
       "work.trading.desc": "A multi-agent LLM framework for financial trading that I study and experiment with to understand how agent roles, tool calls and evaluation work in production-scale LLM systems.",
+      "work.pet.kind": "Personal project · frontend",
+      "work.pet.desc": "A web application for pet adoption and care. Replace this sentence with what the app actually does and the problem it solves.",
 
       "stack.title": "Tools I work with",
+      "stack.ml": "Machine learning and deep learning",
+      "stack.nlp": "NLP and information retrieval",
+      "stack.data": "Data and scientific computing",
       "stack.design": "Interface and design",
-      "stack.ml": "Machine learning",
       "stack.backend": "Backend and systems",
 
       "bg.title": "Background",
-      "bg.girlscript.role": "Project Lead Intern",
-      "bg.girlscript.desc": "Led a project team and coordinated contributors. Replace this with what you were responsible for and one concrete result.",
-      "bg.edu.degree": "Your degree",
+      "bg.edu.degree": "Artificial Intelligence graduate",
       "bg.edu.org": "Your university",
-      "bg.edu.desc": "Field of study, and anything worth noting — a thesis, a focus area, a relevant course.",
+      "bg.edu.desc": "Specialised in machine learning, deep learning, natural language processing and information retrieval, with a graduation project building and evaluating a full biomedical search system.",
+      "bg.cert.when": "Certified",
+      "bg.cert.title": "UI/UX Design certificates",
+      "bg.cert.desc": "Google certification in user experience design: user research, wireframing, prototyping and usability testing — the foundation behind the interfaces I build.",
       "bg.self.when": "Ongoing",
-      "bg.self.title": "Self-directed study",
-      "bg.self.org": "Applied ML and LLM systems",
-      "bg.self.desc": "Working through retrieval-augmented generation, model deployment and system architecture, and bringing what I learn back into the interfaces I build.",
+      "bg.self.title": "Machine learning coursework",
+      "bg.self.desc": "Working through Stanford coursework in machine learning and artificial intelligence alongside my own study of retrieval systems, model deployment and system architecture.",
 
       "contact.title": "Get in touch",
-      "contact.lede": "I am open to freelance work, full-time roles, UI/UX reviews and open-source collaboration. The fastest way to reach me is email — tell me what you are building and I will reply.",
+      "contact.lede": "I am open to machine learning and AI roles, freelance work, UI/UX reviews and open-source collaboration. The fastest way to reach me is email — tell me what you are building and I will reply.",
       "contact.email": "Email",
       "contact.phone": "Phone",
       "footer.built": "Built by hand with HTML and CSS."
     },
 
     ar: {
-      "doc.title": "مصطفى بالدي — مطوّر واجهات أمامية ومصمّم تجربة استخدام",
-      "doc.desc": "مطوّر واجهات أمامية ومصمّم تجربة استخدام من دمشق، يبني واجهات وأنظمة تعلّم آلة تطبيقية.",
+      "doc.title": "مصطفى بالدي — مهندس ذكاء اصطناعي وتعلّم آلة",
+      "doc.desc": "خريج ذكاء اصطناعي يعمل في تعلّم الآلة والتعلّم العميق واسترجاع المعلومات، بخلفية في تصميم تجربة الاستخدام.",
       "brand": "مصطفى بالدي",
       "nav.aria": "أقسام الصفحة",
       "nav.work": "الأعمال",
@@ -560,8 +571,8 @@ footer{
 
       "hero.first": "مصطفى",
       "hero.last": "بالدي",
-      "hero.role": "مطوّر واجهات أمامية ومصمّم تجربة استخدام،<br>متّجه نحو تعلّم الآلة التطبيقي.",
-      "hero.lede": "أبني واجهات متينة من الجهتين — مدروسة في التصميم، منضبطة في البرمجة — وأتعلّم كيف تندمج أنظمة الاسترجاع ونماذج اللغة داخل منتجات حقيقية.",
+      "hero.role": "تعلّم آلة تطبيقي واسترجاع معلومات،<br>بخلفية في تصميم تجربة الاستخدام.",
+      "hero.lede": "أبني أنظمة استرجاع وتعلّم عميق — مسارات معالجة النصوص، ونماذج الترتيب، والتمثيلات الدلالية، والتقييم الذي يثبت جدواها — وأنقل إليها عين المصمّم في الواجهات التي تعلوها.",
       "facts.based": "المقر",
       "facts.basedValue": "دمشق، سوريا",
       "facts.available": "متاح لـ",
@@ -573,33 +584,35 @@ footer{
       "work.title": "مختارات من العمل",
       "work.count": "٤ مشاريع",
       "work.link": "عرض المستودع",
-      "work.agri.kind": "مشروع جماعي · تعلّم آلة",
-      "work.agri.desc": "تطبيق للمزارعين يقترح مواعيد الزراعة المناسبة ويساعد على تشخيص أمراض النبات ومعالجتها انطلاقًا من صور المحاصيل المصابة.",
-      "work.pet.kind": "مشروع شخصي · تطبيق ويب",
-      "work.pet.desc": "تطبيق ويب لتبنّي الحيوانات الأليفة والعناية بها. استبدل هذه الجملة بما يفعله التطبيق فعلًا والمشكلة التي يحلّها.",
-      "work.fit.kind": "مشروع شخصي · تصميم واجهات",
-      "work.fit.desc": "اكتب هنا وصف Fit — ما هو، ولمن، وما الجزء الذي صمّمته أو بنيته منه.",
+      "work.ir.kind": "مشروع أكاديمي · معالجة لغة واسترجاع معلومات",
+      "work.ir.desc": "نظام استرجاع متكامل فوق مدوّنة نصوص طبية حيوية: مسار معالجة أوّلية بـ NLTK، ونموذج فضاء متّجهي بـ TF-IDF وفهرس معكوس بـ BM25 كخطّي أساس، ثم استرجاع دلالي عبر تمثيلات GloVe وBERT وتوسيع الاستعلام بخوارزمية RM3 — مع مقارنة الجميع بمقاييس MAP وnDCG والدقة عند العشرة الأوائل.",
+      "work.agri.kind": "مشروع جماعي · رؤية حاسوبية وتطوير متكامل",
+      "work.agri.desc": "تطبيق للمزارعين يقترح مواعيد الزراعة المناسبة ويشخّص أمراض النبات من صور المحاصيل المصابة، مبنيّ كخدمة Laravel وتطبيق Flutter حول نموذج تصنيف مُدرَّب في Jupyter.",
       "work.trading.kind": "مفتوح المصدر · دراسة",
       "work.trading.desc": "إطار عمل متعدّد الوكلاء يعتمد على نماذج اللغة في التداول المالي، أدرسه وأجرّب عليه لأفهم كيف تُوزَّع أدوار الوكلاء وتُستدعى الأدوات ويُقاس الأداء في أنظمة نماذج اللغة الحقيقية.",
+      "work.pet.kind": "مشروع شخصي · واجهات أمامية",
+      "work.pet.desc": "تطبيق ويب لتبنّي الحيوانات الأليفة والعناية بها. استبدل هذه الجملة بما يفعله التطبيق فعلًا والمشكلة التي يحلّها.",
 
       "stack.title": "الأدوات التي أعمل بها",
+      "stack.ml": "تعلّم الآلة والتعلّم العميق",
+      "stack.nlp": "معالجة اللغة واسترجاع المعلومات",
+      "stack.data": "البيانات والحوسبة العلمية",
       "stack.design": "الواجهات والتصميم",
-      "stack.ml": "تعلّم الآلة",
       "stack.backend": "الخلفية والأنظمة",
 
       "bg.title": "الخلفية",
-      "bg.girlscript.role": "قائد فريق مشروع — تدريب",
-      "bg.girlscript.desc": "قدت فريق مشروع ونسّقت عمل المساهمين. استبدل هذا النص بما كنت مسؤولًا عنه ونتيجة ملموسة واحدة.",
-      "bg.edu.degree": "شهادتك",
+      "bg.edu.degree": "خريج ذكاء اصطناعي",
       "bg.edu.org": "جامعتك",
-      "bg.edu.desc": "التخصص، وأي تفصيل يستحق الذكر — مشروع تخرّج، أو مجال تركيز، أو مساق ذو صلة.",
+      "bg.edu.desc": "تخصّص في تعلّم الآلة والتعلّم العميق ومعالجة اللغة الطبيعية واسترجاع المعلومات، مع مشروع تخرّج يبني نظام بحث طبيًا حيويًا متكاملًا ويقيّم أداءه.",
+      "bg.cert.when": "شهادة",
+      "bg.cert.title": "شهادات في تصميم الواجهات وتجربة الاستخدام",
+      "bg.cert.desc": "شهادة من Google في تصميم تجربة الاستخدام: بحث المستخدم، والتخطيط الهيكلي، والنماذج الأوّلية، واختبار قابلية الاستخدام — وهي الأساس الذي أبني عليه الواجهات.",
       "bg.self.when": "مستمر",
-      "bg.self.title": "دراسة ذاتية",
-      "bg.self.org": "تعلّم الآلة التطبيقي وأنظمة نماذج اللغة",
-      "bg.self.desc": "أعمل على الاسترجاع المعزّز بالتوليد، ونشر النماذج، وبنية الأنظمة، وأنقل ما أتعلّمه إلى الواجهات التي أبنيها.",
+      "bg.self.title": "مساقات في تعلّم الآلة",
+      "bg.self.desc": "أتابع مساقات ستانفورد في تعلّم الآلة والذكاء الاصطناعي، إلى جانب دراستي الذاتية لأنظمة الاسترجاع ونشر النماذج وبنية الأنظمة.",
 
       "contact.title": "تواصل معي",
-      "contact.lede": "أنا منفتح على العمل الحر والوظائف بدوام كامل ومراجعات تجربة الاستخدام والتعاون مفتوح المصدر. أسرع طريقة للوصول إليّ هي البريد الإلكتروني — أخبرني بما تبنيه وسأردّ عليك.",
+      "contact.lede": "أنا منفتح على وظائف تعلّم الآلة والذكاء الاصطناعي، والعمل الحر، ومراجعات تجربة الاستخدام، والتعاون مفتوح المصدر. أسرع طريقة للوصول إليّ هي البريد الإلكتروني — أخبرني بما تبنيه وسأردّ عليك.",
       "contact.email": "البريد الإلكتروني",
       "contact.phone": "الهاتف",
       "footer.built": "مبنيّ يدويًا بـ HTML وCSS."
