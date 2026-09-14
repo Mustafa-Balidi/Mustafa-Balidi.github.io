@@ -212,6 +212,7 @@ html[lang="ar"] .hero h1{letter-spacing:0}
 .tags li{font-size:.76rem;color:var(--muted);border:1px solid var(--line);border-radius:.3rem;padding:.15rem .5rem}
 .work-link{text-decoration:none;font-size:.9rem;color:var(--accent);white-space:nowrap;border-bottom:1px solid transparent}
 .work-link:hover{border-bottom-color:var(--accent)}
+.work-private{font-size:.82rem;color:var(--muted);white-space:nowrap;border:1px solid var(--line);border-radius:.3rem;padding:.15rem .55rem}
 
 /* ---------- stack ---------- */
 .stack-group{padding:1.4rem 0;border-bottom:1px solid var(--line)}
@@ -355,6 +356,19 @@ footer{
 
       <article class="work-row">
         <div>
+          <h3>PetHaven</h3>
+          <p class="work-kind" data-i18n="work.pet.kind">Personal project · AI-assisted web app</p>
+        </div>
+        <div>
+          <!-- EDIT: confirm work.pet.desc — the component roles below are inferred from the stack -->
+          <p data-i18n="work.pet.desc">A pet adoption and care platform with a built-in assistant: a React and Tailwind interface over a .NET backend, a Rasa conversational agent with Whisper speech transcription, LangChain and OpenAI behind the answers, scikit-learn for matching, Redis for caching, and Docker for deployment.</p>
+          <ul class="tags"><li>React</li><li>Tailwind CSS</li><li>.NET</li><li>LangChain</li><li>OpenAI</li><li>Rasa</li><li>Whisper</li><li>scikit-learn</li><li>Redis</li><li>Docker</li><li>Figma</li></ul>
+        </div>
+        <span class="work-private" data-i18n="work.private">Private repository</span>
+      </article>
+
+      <article class="work-row">
+        <div>
           <h3>TradingAgents</h3>
           <p class="work-kind" data-i18n="work.trading.kind">Open source · study</p>
         </div>
@@ -363,19 +377,6 @@ footer{
           <ul class="tags"><li>Python</li><li>LLM agents</li><li>RAG</li></ul>
         </div>
         <a class="work-link" href="https://github.com/Mustafa-Balidi/TradingAgents" data-i18n="work.link">View repository</a>
-      </article>
-
-      <article class="work-row">
-        <div>
-          <h3>PetHaven</h3>
-          <p class="work-kind" data-i18n="work.pet.kind">Personal project · frontend</p>
-        </div>
-        <div>
-          <!-- EDIT: work.pet.desc in the dictionary below (en + ar). The repo is still empty — push the code. -->
-          <p data-i18n="work.pet.desc">A web application for pet adoption and care. Replace this sentence with what the app actually does and the problem it solves.</p>
-          <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
-        </div>
-        <a class="work-link" href="https://github.com/Mustafa-Balidi/PetHaven_v2" data-i18n="work.link">View repository</a>
       </article>
 
     </section>
@@ -393,7 +394,7 @@ footer{
 
       <div class="stack-group">
         <h3 data-i18n="stack.nlp">NLP and information retrieval</h3>
-        <ul><li>NLTK</li><li>PyTerrier</li><li>TF-IDF</li><li>BM25</li><li>GloVe</li><li>sentence-transformers</li><li>Query expansion (RM3)</li><li>Retrieval-augmented generation</li><li>MAP / nDCG evaluation</li></ul>
+        <ul><li>NLTK</li><li>PyTerrier</li><li>TF-IDF</li><li>BM25</li><li>GloVe</li><li>sentence-transformers</li><li>LangChain</li><li>OpenAI API</li><li>Rasa</li><li>Whisper</li><li>Query expansion (RM3)</li><li>Retrieval-augmented generation</li><li>MAP / nDCG evaluation</li></ul>
       </div>
 
       <div class="stack-group">
@@ -408,7 +409,7 @@ footer{
 
       <div class="stack-group">
         <h3 data-i18n="stack.backend">Backend and systems</h3>
-        <ul><li>Flask</li><li>FastAPI</li><li>Docker</li><li>Git</li><li>Linux (Ubuntu, CentOS)</li></ul>
+        <ul><li>.NET</li><li>Flask</li><li>FastAPI</li><li>Redis</li><li>Docker</li><li>Git</li><li>Linux (Ubuntu, CentOS)</li></ul>
       </div>
 
     </section>
@@ -522,8 +523,9 @@ footer{
       "work.agri.desc": "An application for farmers that recommends planting windows and diagnoses plant diseases from photos of affected crops, built as a Laravel service and a Flutter client around a classification model trained in Jupyter.",
       "work.trading.kind": "Open source · study",
       "work.trading.desc": "A multi-agent LLM framework for financial trading that I study and experiment with to understand how agent roles, tool calls and evaluation work in production-scale LLM systems.",
-      "work.pet.kind": "Personal project · frontend",
-      "work.pet.desc": "A web application for pet adoption and care. Replace this sentence with what the app actually does and the problem it solves.",
+      "work.pet.kind": "Personal project · AI-assisted web app",
+      "work.private": "Private repository",
+      "work.pet.desc": "A pet adoption and care platform with a built-in assistant: a React and Tailwind interface over a .NET backend, a Rasa conversational agent with Whisper speech transcription, LangChain and OpenAI behind the answers, scikit-learn for matching, Redis for caching, and Docker for deployment.",
 
       "stack.title": "Tools I work with",
       "stack.ml": "Machine learning and deep learning",
@@ -589,8 +591,9 @@ footer{
       "work.agri.desc": "تطبيق للمزارعين يقترح مواعيد الزراعة المناسبة ويشخّص أمراض النبات من صور المحاصيل المصابة، مبنيّ كخدمة Laravel وتطبيق Flutter حول نموذج تصنيف مُدرَّب في Jupyter.",
       "work.trading.kind": "مفتوح المصدر · دراسة",
       "work.trading.desc": "إطار عمل متعدّد الوكلاء يعتمد على نماذج اللغة في التداول المالي، أدرسه وأجرّب عليه لأفهم كيف تُوزَّع أدوار الوكلاء وتُستدعى الأدوات ويُقاس الأداء في أنظمة نماذج اللغة الحقيقية.",
-      "work.pet.kind": "مشروع شخصي · واجهات أمامية",
-      "work.pet.desc": "تطبيق ويب لتبنّي الحيوانات الأليفة والعناية بها. استبدل هذه الجملة بما يفعله التطبيق فعلًا والمشكلة التي يحلّها.",
+      "work.pet.kind": "مشروع شخصي · تطبيق ويب بمساعد ذكي",
+      "work.private": "مستودع خاص",
+      "work.pet.desc": "منصّة لتبنّي الحيوانات الأليفة والعناية بها مع مساعد مدمج: واجهة React وTailwind فوق خلفية ‎.NET، ووكيل محادثة Rasa مع تفريغ صوتي بـ Whisper، وLangChain وOpenAI خلف الإجابات، وscikit-learn للمطابقة، وRedis للتخزين المؤقت، وDocker للنشر.",
 
       "stack.title": "الأدوات التي أعمل بها",
       "stack.ml": "تعلّم الآلة والتعلّم العميق",
