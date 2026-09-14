@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mustafa Balidi — Frontend Developer & UI/UX Designer</title>
+<meta name="description" content="Frontend developer and UI/UX designer based in Damascus, building interfaces and applied machine learning systems.">
+<meta name="author" content="Mustafa Balidi">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mustafa Balidi — Frontend Developer & UI/UX Designer">
+<meta property="og:description" content="Interfaces that are visually refined and technically sound, plus applied ML and LLM systems.">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/135384993?v=4">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%237aa2f7'/><text x='50' y='70' font-size='58' font-family='monospace' font-weight='700' text-anchor='middle' fill='%230d1017'>m</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ---------- tokens ---------- */
+:root{
+  --bg:#0d1017;
+  --surface:#141824;
+  --line:#242a3a;
+  --text:#e7eaf3;
+  --muted:#8d96ad;
+  --accent:#7aa2f7;
+  --accent-2:#9d7cf5;
+  --shadow:none;
+
+  --display:"Bricolage Grotesque",Georgia,serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,Segoe UI,sans-serif;
+
+  --rail:15rem;
+  --gutter:clamp(1.25rem,5vw,4rem);
+  --stack:clamp(4.5rem,10vw,8rem);
+}
+html[data-theme="light"]{
+  --bg:#f3f4f8;
+  --surface:#ffffff;
+  --line:#dcdfe9;
+  --text:#151823;
+  --muted:#5d6478;
+  --accent:#3b5fd4;
+  --accent-2:#7145d6;
+  --shadow:0 1px 2px rgba(21,24,35,.05);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--body);
+  font-size:1rem;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  transition:background-color .35s ease,color .35s ease;
+}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;margin:0;letter-spacing:-.02em}
+p{margin:0}
+::selection{background:var(--accent);color:var(--bg)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+
+/* ---------- shell ---------- */
+.shell{
+  max-width:78rem;
+  margin:0 auto;
+  padding:0 var(--gutter);
+  display:grid;
+  grid-template-columns:1fr;
+  gap:0;
+}
+@media (min-width:60rem){
+  .shell{grid-template-columns:var(--rail) minmax(0,1fr);column-gap:clamp(2rem,5vw,5rem)}
+}
+
+/* ---------- rail ---------- */
+.rail{
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:1.25rem 0;
+  border-bottom:1px solid var(--line);
+  position:sticky;top:0;z-index:20;
+  background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:blur(10px);
+}
+.rail .mark{font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:-.02em}
+.rail nav{display:none}
+.rail nav a{text-decoration:none;color:var(--muted);font-size:.9rem}
+.rail nav a:hover{color:var(--text)}
+@media (min-width:60rem){
+  .rail{
+    position:sticky;top:0;height:100vh;
+    flex-direction:column;align-items:flex-start;justify-content:flex-start;
+    border-bottom:0;border-right:1px solid var(--line);
+    padding:clamp(2rem,5vh,3.5rem) 1.5rem clamp(2rem,5vh,3.5rem) 0;
+    backdrop-filter:none;background:transparent;
+  }
+  .rail .mark{font-size:1.15rem}
+  .rail nav{display:flex;flex-direction:column;gap:.45rem;margin-top:2.5rem}
+  .rail .rail-foot{margin-top:auto}
+}
+
+.toggle{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--surface);color:var(--muted);
+  border:1px solid var(--line);border-radius:999px;
+  padding:.4rem .8rem;font:inherit;font-size:.8rem;cursor:pointer;
+  box-shadow:var(--shadow);
+  transition:color .2s ease,border-color .2s ease;
+}
+.toggle:hover{color:var(--text);border-color:var(--accent)}
+.toggle svg{width:.95rem;height:.95rem;display:block}
+html[data-theme="light"] .toggle .moon{display:none}
+html:not([data-theme="light"]) .toggle .sun{display:none}
+
+/* ---------- main ---------- */
+main{padding-bottom:var(--stack)}
+section{padding-top:var(--stack)}
+.section-head{
+  display:flex;align-items:baseline;gap:1rem;
+  margin-bottom:2rem;padding-bottom:.75rem;border-bottom:1px solid var(--line);
+}
+.section-head h2{font-size:clamp(1.4rem,2.6vw,1.9rem)}
+.section-head span{color:var(--muted);font-size:.85rem;margin-left:auto}
+
+/* ---------- hero ---------- */
+.hero{min-height:min(86vh,44rem);display:flex;flex-direction:column;justify-content:center;padding-top:clamp(3rem,10vh,6rem)}
+.hero h1{
+  font-size:clamp(2.9rem,11vw,7rem);
+  letter-spacing:-.045em;
+  margin-bottom:1.25rem;
+}
+.hero h1 .line{display:block}
+.hero .role{
+  font-family:var(--display);font-weight:600;
+  font-size:clamp(1.05rem,3vw,1.6rem);
+  color:var(--accent);letter-spacing:-.01em;line-height:1.25;
+}
+.hero .lede{max-width:36rem;color:var(--muted);margin-top:1.5rem;font-size:1.05rem}
+.facts{
+  display:grid;gap:.6rem 2.5rem;margin-top:2.75rem;
+  grid-template-columns:1fr;max-width:36rem;
+}
+@media (min-width:34rem){.facts{grid-template-columns:repeat(3,auto);justify-content:start}}
+.fact dt{color:var(--muted);font-size:.8rem;margin-bottom:.15rem}
+.fact dd{margin:0;font-weight:500;font-size:.95rem}
+.dot{display:inline-block;width:.45rem;height:.45rem;border-radius:50%;background:#37d399;margin-right:.45rem;vertical-align:middle}
+
+.actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2.5rem}
+.btn{
+  display:inline-block;text-decoration:none;font-size:.92rem;font-weight:500;
+  padding:.7rem 1.3rem;border-radius:.4rem;border:1px solid var(--line);
+  background:var(--surface);box-shadow:var(--shadow);
+  transition:border-color .2s ease,background-color .2s ease,color .2s ease;
+}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.btn.primary:hover{background:var(--accent-2);border-color:var(--accent-2);color:var(--bg)}
+
+/* ---------- work ---------- */
+.work-row{
+  display:grid;grid-template-columns:1fr;gap:.55rem;
+  padding:1.75rem 0;border-bottom:1px solid var(--line);
+}
+.work-row:first-of-type{border-top:1px solid var(--line)}
+@media (min-width:48rem){
+  .work-row{grid-template-columns:minmax(0,15rem) minmax(0,1fr) auto;gap:2rem;align-items:baseline}
+}
+.work-row h3{font-size:1.3rem;font-weight:600}
+.work-kind{color:var(--muted);font-size:.82rem;margin-top:.3rem}
+.work-row p{color:var(--muted);font-size:.97rem}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.7rem;padding:0;list-style:none}
+.tags li{
+  font-size:.76rem;color:var(--muted);
+  border:1px solid var(--line);border-radius:.3rem;padding:.15rem .5rem;
+}
+.work-link{
+  text-decoration:none;font-size:.9rem;color:var(--accent);white-space:nowrap;
+  border-bottom:1px solid transparent;
+}
+.work-link:hover{border-bottom-color:var(--accent)}
+
+/* ---------- stack ---------- */
+.stack-group{padding:1.4rem 0;border-bottom:1px solid var(--line)}
+.stack-group:first-of-type{border-top:1px solid var(--line)}
+@media (min-width:48rem){
+  .stack-group{display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr);gap:2rem;align-items:baseline}
+}
+.stack-group h3{font-size:1.05rem;font-weight:600;font-family:var(--body);letter-spacing:0}
+.stack-group ul{display:flex;flex-wrap:wrap;gap:.45rem;list-style:none;margin:.7rem 0 0;padding:0}
+@media (min-width:48rem){.stack-group ul{margin-top:0}}
+.stack-group li{
+  font-size:.85rem;background:var(--surface);border:1px solid var(--line);
+  border-radius:.3rem;padding:.28rem .65rem;box-shadow:var(--shadow);
+}
+
+/* ---------- background ---------- */
+.entry{
+  padding:1.5rem 0;border-bottom:1px solid var(--line);
+}
+.entry:first-of-type{border-top:1px solid var(--line)}
+@media (min-width:48rem){
+  .entry{display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr);gap:2rem;align-items:baseline}
+}
+.entry .when{color:var(--muted);font-size:.85rem}
+.entry h3{font-size:1.1rem;font-weight:600;font-family:var(--body);letter-spacing:0}
+.entry .where{color:var(--accent);font-size:.92rem;margin-top:.15rem}
+.entry p{color:var(--muted);font-size:.95rem;margin-top:.5rem}
+
+/* ---------- contact ---------- */
+.contact-grid{display:grid;gap:1.5rem;grid-template-columns:1fr}
+@media (min-width:48rem){.contact-grid{grid-template-columns:minmax(0,1fr) minmax(0,20rem);gap:3rem}}
+.contact-grid p{color:var(--muted);max-width:34rem}
+.contact-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.contact-list li{border-bottom:1px solid var(--line)}
+.contact-list li:first-child{border-top:1px solid var(--line)}
+.contact-list a{
+  display:flex;justify-content:space-between;gap:1rem;align-items:center;
+  padding:.85rem 0;text-decoration:none;font-size:.95rem;
+}
+.contact-list .label{color:var(--muted);font-size:.85rem}
+.contact-list a:hover .value{color:var(--accent)}
+.value{transition:color .2s ease}
+
+footer{
+  margin-top:var(--stack);padding:1.75rem 0;border-top:1px solid var(--line);
+  color:var(--muted);font-size:.85rem;
+  display:flex;flex-wrap:wrap;gap:.75rem;justify-content:space-between;
+}
+
+/* ---------- one orchestrated load reveal ---------- */
+.reveal{opacity:0;transform:translateY(.6rem);animation:rise .7s cubic-bezier(.22,.8,.3,1) forwards}
+.reveal:nth-child(2){animation-delay:.08s}
+.reveal:nth-child(3){animation-delay:.16s}
+.reveal:nth-child(4){animation-delay:.24s}
+.reveal:nth-child(5){animation-delay:.32s}
+@keyframes rise{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{animation:none;opacity:1;transform:none}
+  *{transition-duration:.01ms !important}
+}
+</style>
+</head>
+
+<body>
+<div class="shell">
+
+  <!-- ========== side rail ========== -->
+  <header class="rail">
+    <a class="mark" href="#top" style="text-decoration:none">Mustafa Balidi</a>
+
+    <nav aria-label="Sections">
+      <a href="#work">Work</a>
+      <a href="#stack">Stack</a>
+      <a href="#background">Background</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="rail-foot">
+      <button class="toggle" id="themeToggle" type="button" aria-label="Switch colour theme">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <span id="themeLabel">Light</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========== main ========== -->
+  <main id="top">
+
+    <!-- ---------- hero ---------- -->
+    <section class="hero">
+      <h1 class="reveal"><span class="line">Mustafa</span><span class="line">Balidi</span></h1>
+      <p class="role reveal">Frontend developer and UI/UX designer,<br>working toward applied machine learning.</p>
+      <p class="lede reveal">I build interfaces that hold up on both sides of the screen — considered in design, careful in engineering — and I am learning how retrieval and LLM systems fit into real products.</p>
+
+      <dl class="facts reveal">
+        <div class="fact"><dt>Based in</dt><dd>Damascus, Syria</dd></div>
+        <div class="fact"><dt>Available for</dt><dd>Freelance &amp; full-time</dd></div>
+        <div class="fact"><dt>Status</dt><dd><span class="dot"></span>Open to work</dd></div>
+      </dl>
+
+      <div class="actions reveal">
+        <!-- EDIT: put your real email here (two places: this link and the contact list below) -->
+        <a class="btn primary" href="mailto:your.email@example.com">Email me</a>
+        <a class="btn" href="https://github.com/Mustafa-Balidi">GitHub</a>
+        <!-- EDIT: replace with your LinkedIn URL, or delete this line -->
+        <a class="btn" href="https://www.linkedin.com/in/your-handle">LinkedIn</a>
+        <!-- EDIT: add resume.pdf next to index.html, or delete this line -->
+        <a class="btn" href="resume.pdf">Résumé (PDF)</a>
+      </div>
+    </section>
+
+    <!-- ---------- work ---------- -->
+    <section id="work">
+      <div class="section-head">
+        <h2>Selected work</h2>
+        <span>4 projects</span>
+      </div>
+
+      <article class="work-row">
+        <div>
+          <h3>AgriSphere</h3>
+          <p class="work-kind">Team project · machine learning</p>
+        </div>
+        <div>
+          <p>An application for farmers that recommends planting windows and helps identify and treat plant diseases from photos of affected crops.</p>
+          <ul class="tags"><li>Python</li><li>Jupyter</li><li>Computer vision</li><li>Machine learning</li></ul>
+        </div>
+        <a class="work-link" href="https://github.com/Mustafa-Balidi/agri_sphere">View repository</a>
+      </article>
+
+      <article class="work-row">
+        <div>
+          <h3>PetHaven</h3>
+          <!-- EDIT: correct the kind if needed -->
+          <p class="work-kind">Personal project · web app</p>
+        </div>
+        <div>
+          <!-- EDIT: describe what PetHaven does in one or two sentences -->
+          <p>A web application for pet adoption and care. Replace this sentence with what the app actually does and the problem it solves.</p>
+          <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+        </div>
+        <a class="work-link" href="https://github.com/Mustafa-Balidi/PetHaven_v2">View repository</a>
+      </article>
+
+      <article class="work-row">
+        <div>
+          <h3>Fit</h3>
+          <!-- EDIT: correct the kind -->
+          <p class="work-kind">Personal project · interface design</p>
+        </div>
+        <div>
+          <!-- EDIT: describe Fit in one or two sentences -->
+          <p>Describe Fit here — what it is, who it is for, and what part of it you designed or built.</p>
+          <ul class="tags"><li>UI/UX</li><li>Figma</li><li>Frontend</li></ul>
+        </div>
+        <a class="work-link" href="https://github.com/Mustafa-Balidi/Fit">View repository</a>
+      </article>
+
+      <article class="work-row">
+        <div>
+          <h3>TradingAgents</h3>
+          <p class="work-kind">Open source · study</p>
+        </div>
+        <div>
+          <p>A multi-agent LLM framework for financial trading that I study and experiment with to understand how agent roles, tool calls and evaluation work in production-scale LLM systems.</p>
+          <ul class="tags"><li>Python</li><li>LLM agents</li><li>RAG</li></ul>
+        </div>
+        <a class="work-link" href="https://github.com/Mustafa-Balidi/TradingAgents">View repository</a>
+      </article>
+    </section>
+
+    <!-- ---------- stack ---------- -->
+    <section id="stack">
+      <div class="section-head">
+        <h2>Tools I work with</h2>
+      </div>
+
+      <div class="stack-group">
+        <h3>Interface and design</h3>
+        <ul><li>HTML</li><li>CSS</li><li>Sass</li><li>JavaScript</li><li>React</li><li>Figma</li><li>Responsive layout</li><li>Design systems</li></ul>
+      </div>
+
+      <div class="stack-group">
+        <h3>Machine learning</h3>
+        <ul><li>Python</li><li>PyTorch</li><li>scikit-learn</li><li>LLM integration</li><li>Retrieval-augmented generation</li><li>Model deployment</li></ul>
+      </div>
+
+      <div class="stack-group">
+        <h3>Backend and systems</h3>
+        <ul><li>Flask</li><li>FastAPI</li><li>Docker</li><li>Git</li><li>Linux (Ubuntu, CentOS)</li></ul>
+      </div>
+    </section>
+
+    <!-- ---------- background ---------- -->
+    <section id="background">
+      <div class="section-head">
+        <h2>Background</h2>
+      </div>
+
+      <div class="entry">
+        <!-- EDIT: replace with the real dates -->
+        <p class="when">20XX — 20XX</p>
+        <div>
+          <h3>Project Lead Intern</h3>
+          <p class="where">GirlScript Foundation</p>
+          <!-- EDIT: one or two lines on what you led and what came out of it -->
+          <p>Led a project team and coordinated contributors. Replace this with what you were responsible for and one concrete result.</p>
+        </div>
+      </div>
+
+      <div class="entry">
+        <!-- EDIT: replace the whole block with your real education -->
+        <p class="when">20XX — 20XX</p>
+        <div>
+          <h3>Your degree</h3>
+          <p class="where">Your university</p>
+          <p>Field of study, and anything worth noting — a thesis, a focus area, a relevant course.</p>
+        </div>
+      </div>
+
+      <div class="entry">
+        <p class="when">Ongoing</p>
+        <div>
+          <h3>Self-directed study</h3>
+          <p class="where">Applied ML and LLM systems</p>
+          <p>Working through retrieval-augmented generation, model deployment and system architecture, and bringing what I learn back into the interfaces I build.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- contact ---------- -->
+    <section id="contact">
+      <div class="section-head">
+        <h2>Get in touch</h2>
+      </div>
+
+      <div class="contact-grid">
+        <p>I am open to freelance work, full-time roles, UI/UX reviews and open-source collaboration. The fastest way to reach me is email — tell me what you are building and I will reply.</p>
+
+        <ul class="contact-list">
+          <!-- EDIT: real email -->
+          <li><a href="mailto:your.email@example.com"><span class="label">Email</span><span class="value">your.email@example.com</span></a></li>
+          <li><a href="https://github.com/Mustafa-Balidi"><span class="label">GitHub</span><span class="value">Mustafa-Balidi</span></a></li>
+          <!-- EDIT: real LinkedIn, or delete the row -->
+          <li><a href="https://www.linkedin.com/in/your-handle"><span class="label">LinkedIn</span><span class="value">your-handle</span></a></li>
+          <!-- EDIT: phone or WhatsApp, or delete the row -->
+          <li><a href="tel:+000000000000"><span class="label">Phone</span><span class="value">+00 000 000 000</span></a></li>
+        </ul>
+      </div>
+
+      <footer>
+        <span>© <span id="year">2026</span> Mustafa Balidi</span>
+        <span>Built by hand with HTML and CSS.</span>
+      </footer>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var label = document.getElementById('themeLabel');
+  var stored = null;
+
+  try { stored = localStorage.getItem('theme'); } catch (e) {}
+
+  var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+  var theme = stored || (prefersLight ? 'light' : 'dark');
+  apply(theme);
+
+  function apply(next) {
+    if (next === 'light') { root.setAttribute('data-theme', 'light'); }
+    else { root.removeAttribute('data-theme'); }
+    if (label) { label.textContent = next === 'light' ? 'Dark' : 'Light'; }
+  }
+
+  document.getElementById('themeToggle').addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    apply(next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
