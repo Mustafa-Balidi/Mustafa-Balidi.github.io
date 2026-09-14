@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mustafa Balidi — Frontend Developer & UI/UX Designer</title>
-<meta name="description" content="Frontend developer and UI/UX designer based in Damascus, building interfaces and applied machine learning systems.">
+<meta name="description" id="metaDesc" content="Frontend developer and UI/UX designer based in Damascus, building interfaces and applied machine learning systems.">
 <meta name="author" content="Mustafa Balidi">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Mustafa Balidi — Frontend Developer & UI/UX Designer">
@@ -15,7 +15,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 /* ---------- tokens ---------- */
@@ -28,9 +28,13 @@
   --accent:#7aa2f7;
   --accent-2:#9d7cf5;
   --shadow:none;
+  --panel-shadow:0 12px 32px rgba(0,0,0,.45);
 
   --display:"Bricolage Grotesque",Georgia,serif;
   --body:"IBM Plex Sans",system-ui,-apple-system,Segoe UI,sans-serif;
+  --h-tracking:-.02em;
+  --h-leading:1.02;
+  --p-leading:1.65;
 
   --rail:15rem;
   --gutter:clamp(1.25rem,5vw,4rem);
@@ -45,22 +49,32 @@ html[data-theme="light"]{
   --accent:#3b5fd4;
   --accent-2:#7145d6;
   --shadow:0 1px 2px rgba(21,24,35,.05);
+  --panel-shadow:0 12px 32px rgba(21,24,35,.12);
+}
+/* Arabic typography: one family throughout, no negative tracking, looser leading */
+html[lang="ar"]{
+  --display:"IBM Plex Sans Arabic",system-ui,sans-serif;
+  --body:"IBM Plex Sans Arabic",system-ui,sans-serif;
+  --h-tracking:0;
+  --h-leading:1.3;
+  --p-leading:1.9;
 }
 
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:7rem}
 body{
   margin:0;
   background:var(--bg);
   color:var(--text);
   font-family:var(--body);
   font-size:1rem;
-  line-height:1.65;
+  line-height:var(--p-leading);
   -webkit-font-smoothing:antialiased;
   transition:background-color .35s ease,color .35s ease;
 }
 a{color:inherit}
-h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;margin:0;letter-spacing:-.02em}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:var(--h-leading);margin:0;letter-spacing:var(--h-tracking)}
+html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] h3{font-weight:700}
 p{margin:0}
 ::selection{background:var(--accent);color:var(--bg)}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
@@ -72,52 +86,82 @@ p{margin:0}
   padding:0 var(--gutter);
   display:grid;
   grid-template-columns:1fr;
-  gap:0;
 }
 @media (min-width:60rem){
+  html{scroll-padding-top:2rem}
   .shell{grid-template-columns:var(--rail) minmax(0,1fr);column-gap:clamp(2rem,5vw,5rem)}
 }
 
-/* ---------- rail ---------- */
+/* ---------- navbar ---------- */
 .rail{
-  display:flex;align-items:center;justify-content:space-between;gap:1rem;
-  padding:1.25rem 0;
+  position:sticky;top:0;z-index:30;
+  display:flex;align-items:center;justify-content:space-between;gap:.75rem;
+  padding:.9rem 0;
   border-bottom:1px solid var(--line);
-  position:sticky;top:0;z-index:20;
   background:color-mix(in srgb,var(--bg) 88%,transparent);
   backdrop-filter:blur(10px);
 }
-.rail .mark{font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:-.02em}
-.rail nav{display:none}
-.rail nav a{text-decoration:none;color:var(--muted);font-size:.9rem}
-.rail nav a:hover{color:var(--text)}
-@media (min-width:60rem){
-  .rail{
-    position:sticky;top:0;height:100vh;
-    flex-direction:column;align-items:flex-start;justify-content:flex-start;
-    border-bottom:0;border-right:1px solid var(--line);
-    padding:clamp(2rem,5vh,3.5rem) 1.5rem clamp(2rem,5vh,3.5rem) 0;
-    backdrop-filter:none;background:transparent;
-  }
-  .rail .mark{font-size:1.15rem}
-  .rail nav{display:flex;flex-direction:column;gap:.45rem;margin-top:2.5rem}
-  .rail .rail-foot{margin-top:auto}
+.mark{
+  font-family:var(--display);font-weight:800;font-size:1.05rem;
+  letter-spacing:var(--h-tracking);text-decoration:none;white-space:nowrap;
 }
 
-.toggle{
-  display:inline-flex;align-items:center;gap:.5rem;
+.controls{display:flex;align-items:center;gap:.4rem}
+.ctl{
+  display:inline-flex;align-items:center;justify-content:center;gap:.4rem;
+  min-height:2.2rem;padding:0 .7rem;
   background:var(--surface);color:var(--muted);
   border:1px solid var(--line);border-radius:999px;
-  padding:.4rem .8rem;font:inherit;font-size:.8rem;cursor:pointer;
+  font:inherit;font-size:.8rem;font-weight:500;cursor:pointer;
   box-shadow:var(--shadow);
   transition:color .2s ease,border-color .2s ease;
 }
-.toggle:hover{color:var(--text);border-color:var(--accent)}
-.toggle svg{width:.95rem;height:.95rem;display:block}
-html[data-theme="light"] .toggle .moon{display:none}
-html:not([data-theme="light"]) .toggle .sun{display:none}
+.ctl:hover{color:var(--text);border-color:var(--accent)}
+.ctl svg{width:.95rem;height:.95rem;display:block}
+.ctl .txt{display:none}
+@media (min-width:26rem){.ctl .txt{display:inline}}
+html[data-theme="light"] .ctl .moon{display:none}
+html:not([data-theme="light"]) .ctl .sun{display:none}
 
-/* ---------- main ---------- */
+/* nav: dropdown panel on small screens, static column on desktop */
+.nav{
+  position:absolute;top:calc(100% + .5rem);inset-inline-end:0;
+  flex-direction:column;gap:.15rem;min-width:12rem;
+  background:var(--surface);border:1px solid var(--line);border-radius:.7rem;
+  padding:.45rem;box-shadow:var(--panel-shadow);
+  display:none;
+}
+.nav.open{display:flex}
+.nav a{
+  text-decoration:none;color:var(--muted);font-size:.95rem;
+  padding:.55rem .7rem;border-radius:.45rem;
+  transition:color .2s ease,background-color .2s ease;
+}
+.nav a:hover{color:var(--text);background:color-mix(in srgb,var(--text) 7%,transparent)}
+.nav a.active{color:var(--accent)}
+
+@media (min-width:60rem){
+  .rail{
+    height:100vh;
+    flex-direction:column;align-items:flex-start;justify-content:flex-start;
+    border-bottom:0;border-inline-end:1px solid var(--line);
+    padding-block:clamp(2rem,5vh,3.5rem);
+    padding-inline:0 1.5rem;
+    background:transparent;backdrop-filter:none;
+  }
+  .mark{font-size:1.15rem}
+  .menu-btn{display:none}
+  .nav{
+    display:flex;position:static;min-width:0;
+    background:none;border:0;border-radius:0;padding:0;box-shadow:none;
+    margin-top:2.5rem;
+  }
+  .nav a{padding:.2rem 0;font-size:.9rem}
+  .nav a:hover{background:none}
+  .controls{margin-top:auto}
+}
+
+/* ---------- sections ---------- */
 main{padding-bottom:var(--stack)}
 section{padding-top:var(--stack)}
 .section-head{
@@ -125,30 +169,24 @@ section{padding-top:var(--stack)}
   margin-bottom:2rem;padding-bottom:.75rem;border-bottom:1px solid var(--line);
 }
 .section-head h2{font-size:clamp(1.4rem,2.6vw,1.9rem)}
-.section-head span{color:var(--muted);font-size:.85rem;margin-left:auto}
+.section-head span{color:var(--muted);font-size:.85rem;margin-inline-start:auto}
 
 /* ---------- hero ---------- */
-.hero{min-height:min(86vh,44rem);display:flex;flex-direction:column;justify-content:center;padding-top:clamp(3rem,10vh,6rem)}
-.hero h1{
-  font-size:clamp(2.9rem,11vw,7rem);
-  letter-spacing:-.045em;
-  margin-bottom:1.25rem;
-}
+.hero{min-height:min(84vh,44rem);display:flex;flex-direction:column;justify-content:center;padding-top:clamp(3rem,10vh,6rem)}
+.hero h1{font-size:clamp(2.9rem,11vw,7rem);letter-spacing:-.045em;margin-bottom:1.25rem}
+html[lang="ar"] .hero h1{letter-spacing:0}
 .hero h1 .line{display:block}
 .hero .role{
   font-family:var(--display);font-weight:600;
   font-size:clamp(1.05rem,3vw,1.6rem);
-  color:var(--accent);letter-spacing:-.01em;line-height:1.25;
+  color:var(--accent);letter-spacing:var(--h-tracking);line-height:1.35;
 }
-.hero .lede{max-width:36rem;color:var(--muted);margin-top:1.5rem;font-size:1.05rem}
-.facts{
-  display:grid;gap:.6rem 2.5rem;margin-top:2.75rem;
-  grid-template-columns:1fr;max-width:36rem;
-}
+.hero .lede{max-width:38rem;color:var(--muted);margin-top:1.5rem;font-size:1.05rem}
+.facts{display:grid;gap:.6rem 2.5rem;margin-top:2.75rem;grid-template-columns:1fr;max-width:38rem}
 @media (min-width:34rem){.facts{grid-template-columns:repeat(3,auto);justify-content:start}}
 .fact dt{color:var(--muted);font-size:.8rem;margin-bottom:.15rem}
 .fact dd{margin:0;font-weight:500;font-size:.95rem}
-.dot{display:inline-block;width:.45rem;height:.45rem;border-radius:50%;background:#37d399;margin-right:.45rem;vertical-align:middle}
+.dot{display:inline-block;width:.45rem;height:.45rem;border-radius:50%;background:#37d399;margin-inline-end:.45rem;vertical-align:middle}
 
 .actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2.5rem}
 .btn{
@@ -162,10 +200,7 @@ section{padding-top:var(--stack)}
 .btn.primary:hover{background:var(--accent-2);border-color:var(--accent-2);color:var(--bg)}
 
 /* ---------- work ---------- */
-.work-row{
-  display:grid;grid-template-columns:1fr;gap:.55rem;
-  padding:1.75rem 0;border-bottom:1px solid var(--line);
-}
+.work-row{display:grid;grid-template-columns:1fr;gap:.55rem;padding:1.75rem 0;border-bottom:1px solid var(--line)}
 .work-row:first-of-type{border-top:1px solid var(--line)}
 @media (min-width:48rem){
   .work-row{grid-template-columns:minmax(0,15rem) minmax(0,1fr) auto;gap:2rem;align-items:baseline}
@@ -174,14 +209,8 @@ section{padding-top:var(--stack)}
 .work-kind{color:var(--muted);font-size:.82rem;margin-top:.3rem}
 .work-row p{color:var(--muted);font-size:.97rem}
 .tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.7rem;padding:0;list-style:none}
-.tags li{
-  font-size:.76rem;color:var(--muted);
-  border:1px solid var(--line);border-radius:.3rem;padding:.15rem .5rem;
-}
-.work-link{
-  text-decoration:none;font-size:.9rem;color:var(--accent);white-space:nowrap;
-  border-bottom:1px solid transparent;
-}
+.tags li{font-size:.76rem;color:var(--muted);border:1px solid var(--line);border-radius:.3rem;padding:.15rem .5rem}
+.work-link{text-decoration:none;font-size:.9rem;color:var(--accent);white-space:nowrap;border-bottom:1px solid transparent}
 .work-link:hover{border-bottom-color:var(--accent)}
 
 /* ---------- stack ---------- */
@@ -193,15 +222,10 @@ section{padding-top:var(--stack)}
 .stack-group h3{font-size:1.05rem;font-weight:600;font-family:var(--body);letter-spacing:0}
 .stack-group ul{display:flex;flex-wrap:wrap;gap:.45rem;list-style:none;margin:.7rem 0 0;padding:0}
 @media (min-width:48rem){.stack-group ul{margin-top:0}}
-.stack-group li{
-  font-size:.85rem;background:var(--surface);border:1px solid var(--line);
-  border-radius:.3rem;padding:.28rem .65rem;box-shadow:var(--shadow);
-}
+.stack-group li{font-size:.85rem;background:var(--surface);border:1px solid var(--line);border-radius:.3rem;padding:.28rem .65rem;box-shadow:var(--shadow)}
 
 /* ---------- background ---------- */
-.entry{
-  padding:1.5rem 0;border-bottom:1px solid var(--line);
-}
+.entry{padding:1.5rem 0;border-bottom:1px solid var(--line)}
 .entry:first-of-type{border-top:1px solid var(--line)}
 @media (min-width:48rem){
   .entry{display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr);gap:2rem;align-items:baseline}
@@ -218,13 +242,10 @@ section{padding-top:var(--stack)}
 .contact-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
 .contact-list li{border-bottom:1px solid var(--line)}
 .contact-list li:first-child{border-top:1px solid var(--line)}
-.contact-list a{
-  display:flex;justify-content:space-between;gap:1rem;align-items:center;
-  padding:.85rem 0;text-decoration:none;font-size:.95rem;
-}
+.contact-list a{display:flex;justify-content:space-between;gap:1rem;align-items:center;padding:.85rem 0;text-decoration:none;font-size:.95rem}
 .contact-list .label{color:var(--muted);font-size:.85rem}
 .contact-list a:hover .value{color:var(--accent)}
-.value{transition:color .2s ease}
+.value{transition:color .2s ease;direction:ltr;unicode-bidi:isolate}
 
 footer{
   margin-top:var(--stack);padding:1.75rem 0;border-top:1px solid var(--line);
@@ -232,7 +253,7 @@ footer{
   display:flex;flex-wrap:wrap;gap:.75rem;justify-content:space-between;
 }
 
-/* ---------- one orchestrated load reveal ---------- */
+/* ---------- load reveal ---------- */
 .reveal{opacity:0;transform:translateY(.6rem);animation:rise .7s cubic-bezier(.22,.8,.3,1) forwards}
 .reveal:nth-child(2){animation-delay:.08s}
 .reveal:nth-child(3){animation-delay:.16s}
@@ -250,22 +271,31 @@ footer{
 <body>
 <div class="shell">
 
-  <!-- ========== side rail ========== -->
+  <!-- ========== navbar ========== -->
   <header class="rail">
-    <a class="mark" href="#top" style="text-decoration:none">Mustafa Balidi</a>
+    <a class="mark" href="#top" data-i18n="brand">Mustafa Balidi</a>
 
-    <nav aria-label="Sections">
-      <a href="#work">Work</a>
-      <a href="#stack">Stack</a>
-      <a href="#background">Background</a>
-      <a href="#contact">Contact</a>
+    <nav class="nav" id="siteNav" data-i18n-aria="nav.aria" aria-label="Sections">
+      <a href="#work" data-i18n="nav.work">Work</a>
+      <a href="#stack" data-i18n="nav.stack">Stack</a>
+      <a href="#background" data-i18n="nav.background">Background</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
     </nav>
 
-    <div class="rail-foot">
-      <button class="toggle" id="themeToggle" type="button" aria-label="Switch colour theme">
-        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-        <span id="themeLabel">Light</span>
+    <div class="controls">
+      <button class="ctl" id="langToggle" type="button" data-i18n-aria="lang.aria" aria-label="Switch language">
+        <span id="langLabel">العربية</span>
+      </button>
+
+      <button class="ctl" id="themeToggle" type="button" data-i18n-aria="theme.aria" aria-label="Switch colour theme">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <span class="txt" id="themeLabel">Light</span>
+      </button>
+
+      <button class="ctl menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="siteNav" data-i18n-aria="menu.aria" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <span class="txt" data-i18n="menu.label">Menu</span>
       </button>
     </div>
   </header>
@@ -275,18 +305,18 @@ footer{
 
     <!-- ---------- hero ---------- -->
     <section class="hero">
-      <h1 class="reveal"><span class="line">Mustafa</span><span class="line">Balidi</span></h1>
-      <p class="role reveal">Frontend developer and UI/UX designer,<br>working toward applied machine learning.</p>
-      <p class="lede reveal">I build interfaces that hold up on both sides of the screen — considered in design, careful in engineering — and I am learning how retrieval and LLM systems fit into real products.</p>
+      <h1 class="reveal"><span class="line" data-i18n="hero.first">Mustafa</span><span class="line" data-i18n="hero.last">Balidi</span></h1>
+      <p class="role reveal" data-i18n="hero.role">Frontend developer and UI/UX designer,<br>working toward applied machine learning.</p>
+      <p class="lede reveal" data-i18n="hero.lede">I build interfaces that hold up on both sides of the screen — considered in design, careful in engineering — and I am learning how retrieval and LLM systems fit into real products.</p>
 
       <dl class="facts reveal">
-        <div class="fact"><dt>Based in</dt><dd>Damascus, Syria</dd></div>
-        <div class="fact"><dt>Available for</dt><dd>Freelance &amp; full-time</dd></div>
-        <div class="fact"><dt>Status</dt><dd><span class="dot"></span>Open to work</dd></div>
+        <div class="fact"><dt data-i18n="facts.based">Based in</dt><dd data-i18n="facts.basedValue">Damascus, Syria</dd></div>
+        <div class="fact"><dt data-i18n="facts.available">Available for</dt><dd data-i18n="facts.availableValue">Freelance &amp; full-time</dd></div>
+        <div class="fact"><dt data-i18n="facts.status">Status</dt><dd><span class="dot"></span><span data-i18n="facts.statusValue">Open to work</span></dd></div>
       </dl>
 
       <div class="actions reveal">
-        <a class="btn primary" href="mailto:mustafa.balidie@gmail.com">Email me</a>
+        <a class="btn primary" href="mailto:mustafa.balidie@gmail.com" data-i18n="btn.email">Email me</a>
         <a class="btn" href="https://github.com/Mustafa-Balidi">GitHub</a>
         <a class="btn" href="https://www.linkedin.com/in/mustafa-balidi-80a69b383/">LinkedIn</a>
       </div>
@@ -295,81 +325,79 @@ footer{
     <!-- ---------- work ---------- -->
     <section id="work">
       <div class="section-head">
-        <h2>Selected work</h2>
-        <span>4 projects</span>
+        <h2 data-i18n="work.title">Selected work</h2>
+        <span data-i18n="work.count">4 projects</span>
       </div>
 
       <article class="work-row">
         <div>
           <h3>AgriSphere</h3>
-          <p class="work-kind">Team project · machine learning</p>
+          <p class="work-kind" data-i18n="work.agri.kind">Team project · machine learning</p>
         </div>
         <div>
-          <p>An application for farmers that recommends planting windows and helps identify and treat plant diseases from photos of affected crops.</p>
+          <p data-i18n="work.agri.desc">An application for farmers that recommends planting windows and helps identify and treat plant diseases from photos of affected crops.</p>
           <ul class="tags"><li>Python</li><li>Jupyter</li><li>Computer vision</li><li>Machine learning</li></ul>
         </div>
-        <a class="work-link" href="https://github.com/Mustafa-Balidi/agri_sphere">View repository</a>
+        <a class="work-link" href="https://github.com/Mustafa-Balidi/agri_sphere" data-i18n="work.link">View repository</a>
       </article>
 
       <article class="work-row">
         <div>
           <h3>PetHaven</h3>
-          <!-- EDIT: correct the kind if needed -->
-          <p class="work-kind">Personal project · web app</p>
+          <p class="work-kind" data-i18n="work.pet.kind">Personal project · web app</p>
         </div>
         <div>
-          <!-- EDIT: describe what PetHaven does in one or two sentences -->
-          <p>A web application for pet adoption and care. Replace this sentence with what the app actually does and the problem it solves.</p>
+          <!-- EDIT: work.pet.desc in the dictionary below (en + ar) -->
+          <p data-i18n="work.pet.desc">A web application for pet adoption and care. Replace this sentence with what the app actually does and the problem it solves.</p>
           <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
         </div>
-        <a class="work-link" href="https://github.com/Mustafa-Balidi/PetHaven_v2">View repository</a>
+        <a class="work-link" href="https://github.com/Mustafa-Balidi/PetHaven_v2" data-i18n="work.link">View repository</a>
       </article>
 
       <article class="work-row">
         <div>
           <h3>Fit</h3>
-          <!-- EDIT: correct the kind -->
-          <p class="work-kind">Personal project · interface design</p>
+          <p class="work-kind" data-i18n="work.fit.kind">Personal project · interface design</p>
         </div>
         <div>
-          <!-- EDIT: describe Fit in one or two sentences -->
-          <p>Describe Fit here — what it is, who it is for, and what part of it you designed or built.</p>
+          <!-- EDIT: work.fit.desc in the dictionary below (en + ar) -->
+          <p data-i18n="work.fit.desc">Describe Fit here — what it is, who it is for, and what part of it you designed or built.</p>
           <ul class="tags"><li>UI/UX</li><li>Figma</li><li>Frontend</li></ul>
         </div>
-        <a class="work-link" href="https://github.com/Mustafa-Balidi/Fit">View repository</a>
+        <a class="work-link" href="https://github.com/Mustafa-Balidi/Fit" data-i18n="work.link">View repository</a>
       </article>
 
       <article class="work-row">
         <div>
           <h3>TradingAgents</h3>
-          <p class="work-kind">Open source · study</p>
+          <p class="work-kind" data-i18n="work.trading.kind">Open source · study</p>
         </div>
         <div>
-          <p>A multi-agent LLM framework for financial trading that I study and experiment with to understand how agent roles, tool calls and evaluation work in production-scale LLM systems.</p>
+          <p data-i18n="work.trading.desc">A multi-agent LLM framework for financial trading that I study and experiment with to understand how agent roles, tool calls and evaluation work in production-scale LLM systems.</p>
           <ul class="tags"><li>Python</li><li>LLM agents</li><li>RAG</li></ul>
         </div>
-        <a class="work-link" href="https://github.com/Mustafa-Balidi/TradingAgents">View repository</a>
+        <a class="work-link" href="https://github.com/Mustafa-Balidi/TradingAgents" data-i18n="work.link">View repository</a>
       </article>
     </section>
 
     <!-- ---------- stack ---------- -->
     <section id="stack">
       <div class="section-head">
-        <h2>Tools I work with</h2>
+        <h2 data-i18n="stack.title">Tools I work with</h2>
       </div>
 
       <div class="stack-group">
-        <h3>Interface and design</h3>
+        <h3 data-i18n="stack.design">Interface and design</h3>
         <ul><li>HTML</li><li>CSS</li><li>Sass</li><li>Tailwind CSS</li><li>JavaScript</li><li>React</li><li>Figma</li><li>Stitch</li><li>Responsive layout</li><li>Design systems</li></ul>
       </div>
 
       <div class="stack-group">
-        <h3>Machine learning</h3>
+        <h3 data-i18n="stack.ml">Machine learning</h3>
         <ul><li>Python</li><li>PyTorch</li><li>scikit-learn</li><li>LLM integration</li><li>Retrieval-augmented generation</li><li>Model deployment</li></ul>
       </div>
 
       <div class="stack-group">
-        <h3>Backend and systems</h3>
+        <h3 data-i18n="stack.backend">Backend and systems</h3>
         <ul><li>Flask</li><li>FastAPI</li><li>Docker</li><li>Git</li><li>Linux (Ubuntu, CentOS)</li></ul>
       </div>
     </section>
@@ -377,36 +405,37 @@ footer{
     <!-- ---------- background ---------- -->
     <section id="background">
       <div class="section-head">
-        <h2>Background</h2>
+        <h2 data-i18n="bg.title">Background</h2>
       </div>
 
       <div class="entry">
-        <!-- EDIT: replace with the real dates -->
+        <!-- EDIT: real dates -->
         <p class="when">20XX — 20XX</p>
         <div>
-          <h3>Project Lead Intern</h3>
+          <h3 data-i18n="bg.girlscript.role">Project Lead Intern</h3>
           <p class="where">GirlScript Foundation</p>
-          <!-- EDIT: one or two lines on what you led and what came out of it -->
-          <p>Led a project team and coordinated contributors. Replace this with what you were responsible for and one concrete result.</p>
+          <!-- EDIT: bg.girlscript.desc in the dictionary below (en + ar) -->
+          <p data-i18n="bg.girlscript.desc">Led a project team and coordinated contributors. Replace this with what you were responsible for and one concrete result.</p>
         </div>
       </div>
 
       <div class="entry">
-        <!-- EDIT: replace the whole block with your real education -->
+        <!-- EDIT: real dates -->
         <p class="when">20XX — 20XX</p>
         <div>
-          <h3>Your degree</h3>
-          <p class="where">Your university</p>
-          <p>Field of study, and anything worth noting — a thesis, a focus area, a relevant course.</p>
+          <!-- EDIT: bg.edu.* in the dictionary below (en + ar) -->
+          <h3 data-i18n="bg.edu.degree">Your degree</h3>
+          <p class="where" data-i18n="bg.edu.org">Your university</p>
+          <p data-i18n="bg.edu.desc">Field of study, and anything worth noting — a thesis, a focus area, a relevant course.</p>
         </div>
       </div>
 
       <div class="entry">
-        <p class="when">Ongoing</p>
+        <p class="when" data-i18n="bg.self.when">Ongoing</p>
         <div>
-          <h3>Self-directed study</h3>
-          <p class="where">Applied ML and LLM systems</p>
-          <p>Working through retrieval-augmented generation, model deployment and system architecture, and bringing what I learn back into the interfaces I build.</p>
+          <h3 data-i18n="bg.self.title">Self-directed study</h3>
+          <p class="where" data-i18n="bg.self.org">Applied ML and LLM systems</p>
+          <p data-i18n="bg.self.desc">Working through retrieval-augmented generation, model deployment and system architecture, and bringing what I learn back into the interfaces I build.</p>
         </div>
       </div>
     </section>
@@ -414,23 +443,23 @@ footer{
     <!-- ---------- contact ---------- -->
     <section id="contact">
       <div class="section-head">
-        <h2>Get in touch</h2>
+        <h2 data-i18n="contact.title">Get in touch</h2>
       </div>
 
       <div class="contact-grid">
-        <p>I am open to freelance work, full-time roles, UI/UX reviews and open-source collaboration. The fastest way to reach me is email — tell me what you are building and I will reply.</p>
+        <p data-i18n="contact.lede">I am open to freelance work, full-time roles, UI/UX reviews and open-source collaboration. The fastest way to reach me is email — tell me what you are building and I will reply.</p>
 
         <ul class="contact-list">
-          <li><a href="mailto:mustafa.balidie@gmail.com"><span class="label">Email</span><span class="value">mustafa.balidie@gmail.com</span></a></li>
+          <li><a href="mailto:mustafa.balidie@gmail.com"><span class="label" data-i18n="contact.email">Email</span><span class="value">mustafa.balidie@gmail.com</span></a></li>
           <li><a href="https://github.com/Mustafa-Balidi"><span class="label">GitHub</span><span class="value">Mustafa-Balidi</span></a></li>
           <li><a href="https://www.linkedin.com/in/mustafa-balidi-80a69b383/"><span class="label">LinkedIn</span><span class="value">mustafa-balidi</span></a></li>
-          <li><a href="tel:+963964750851"><span class="label">Phone</span><span class="value">+963 964 750 851</span></a></li>
+          <li><a href="tel:+963964750851"><span class="label" data-i18n="contact.phone">Phone</span><span class="value">+963 964 750 851</span></a></li>
         </ul>
       </div>
 
       <footer>
-        <span>© <span id="year">2026</span> Mustafa Balidi</span>
-        <span>Built by hand with HTML and CSS.</span>
+        <span>© <span id="year">2026</span> <span data-i18n="brand">Mustafa Balidi</span></span>
+        <span data-i18n="footer.built">Built by hand with HTML and CSS.</span>
       </footer>
     </section>
 
@@ -439,29 +468,272 @@ footer{
 
 <script>
 (function () {
+  "use strict";
+
+  /* =========================================================
+     Translations. Every visible string lives here twice.
+     To change copy, edit the key in BOTH en and ar.
+     ========================================================= */
+  var I18N = {
+    en: {
+      "doc.title": "Mustafa Balidi — Frontend Developer & UI/UX Designer",
+      "doc.desc": "Frontend developer and UI/UX designer based in Damascus, building interfaces and applied machine learning systems.",
+      "brand": "Mustafa Balidi",
+      "nav.aria": "Sections",
+      "nav.work": "Work",
+      "nav.stack": "Stack",
+      "nav.background": "Background",
+      "nav.contact": "Contact",
+      "lang.aria": "Switch the site language to Arabic",
+      "lang.label": "العربية",
+      "theme.aria": "Switch colour theme",
+      "theme.toLight": "Light",
+      "theme.toDark": "Dark",
+      "menu.aria": "Open menu",
+      "menu.ariaClose": "Close menu",
+      "menu.label": "Menu",
+
+      "hero.first": "Mustafa",
+      "hero.last": "Balidi",
+      "hero.role": "Frontend developer and UI/UX designer,<br>working toward applied machine learning.",
+      "hero.lede": "I build interfaces that hold up on both sides of the screen — considered in design, careful in engineering — and I am learning how retrieval and LLM systems fit into real products.",
+      "facts.based": "Based in",
+      "facts.basedValue": "Damascus, Syria",
+      "facts.available": "Available for",
+      "facts.availableValue": "Freelance &amp; full-time",
+      "facts.status": "Status",
+      "facts.statusValue": "Open to work",
+      "btn.email": "Email me",
+
+      "work.title": "Selected work",
+      "work.count": "4 projects",
+      "work.link": "View repository",
+      "work.agri.kind": "Team project · machine learning",
+      "work.agri.desc": "An application for farmers that recommends planting windows and helps identify and treat plant diseases from photos of affected crops.",
+      "work.pet.kind": "Personal project · web app",
+      "work.pet.desc": "A web application for pet adoption and care. Replace this sentence with what the app actually does and the problem it solves.",
+      "work.fit.kind": "Personal project · interface design",
+      "work.fit.desc": "Describe Fit here — what it is, who it is for, and what part of it you designed or built.",
+      "work.trading.kind": "Open source · study",
+      "work.trading.desc": "A multi-agent LLM framework for financial trading that I study and experiment with to understand how agent roles, tool calls and evaluation work in production-scale LLM systems.",
+
+      "stack.title": "Tools I work with",
+      "stack.design": "Interface and design",
+      "stack.ml": "Machine learning",
+      "stack.backend": "Backend and systems",
+
+      "bg.title": "Background",
+      "bg.girlscript.role": "Project Lead Intern",
+      "bg.girlscript.desc": "Led a project team and coordinated contributors. Replace this with what you were responsible for and one concrete result.",
+      "bg.edu.degree": "Your degree",
+      "bg.edu.org": "Your university",
+      "bg.edu.desc": "Field of study, and anything worth noting — a thesis, a focus area, a relevant course.",
+      "bg.self.when": "Ongoing",
+      "bg.self.title": "Self-directed study",
+      "bg.self.org": "Applied ML and LLM systems",
+      "bg.self.desc": "Working through retrieval-augmented generation, model deployment and system architecture, and bringing what I learn back into the interfaces I build.",
+
+      "contact.title": "Get in touch",
+      "contact.lede": "I am open to freelance work, full-time roles, UI/UX reviews and open-source collaboration. The fastest way to reach me is email — tell me what you are building and I will reply.",
+      "contact.email": "Email",
+      "contact.phone": "Phone",
+      "footer.built": "Built by hand with HTML and CSS."
+    },
+
+    ar: {
+      "doc.title": "مصطفى بالدي — مطوّر واجهات أمامية ومصمّم تجربة استخدام",
+      "doc.desc": "مطوّر واجهات أمامية ومصمّم تجربة استخدام من دمشق، يبني واجهات وأنظمة تعلّم آلة تطبيقية.",
+      "brand": "مصطفى بالدي",
+      "nav.aria": "أقسام الصفحة",
+      "nav.work": "الأعمال",
+      "nav.stack": "الأدوات",
+      "nav.background": "الخلفية",
+      "nav.contact": "التواصل",
+      "lang.aria": "تبديل لغة الموقع إلى الإنجليزية",
+      "lang.label": "English",
+      "theme.aria": "تبديل مظهر الألوان",
+      "theme.toLight": "فاتح",
+      "theme.toDark": "داكن",
+      "menu.aria": "فتح القائمة",
+      "menu.ariaClose": "إغلاق القائمة",
+      "menu.label": "القائمة",
+
+      "hero.first": "مصطفى",
+      "hero.last": "بالدي",
+      "hero.role": "مطوّر واجهات أمامية ومصمّم تجربة استخدام،<br>متّجه نحو تعلّم الآلة التطبيقي.",
+      "hero.lede": "أبني واجهات متينة من الجهتين — مدروسة في التصميم، منضبطة في البرمجة — وأتعلّم كيف تندمج أنظمة الاسترجاع ونماذج اللغة داخل منتجات حقيقية.",
+      "facts.based": "المقر",
+      "facts.basedValue": "دمشق، سوريا",
+      "facts.available": "متاح لـ",
+      "facts.availableValue": "العمل الحر والدوام الكامل",
+      "facts.status": "الحالة",
+      "facts.statusValue": "مستعدّ لفرص جديدة",
+      "btn.email": "راسلني",
+
+      "work.title": "مختارات من العمل",
+      "work.count": "٤ مشاريع",
+      "work.link": "عرض المستودع",
+      "work.agri.kind": "مشروع جماعي · تعلّم آلة",
+      "work.agri.desc": "تطبيق للمزارعين يقترح مواعيد الزراعة المناسبة ويساعد على تشخيص أمراض النبات ومعالجتها انطلاقًا من صور المحاصيل المصابة.",
+      "work.pet.kind": "مشروع شخصي · تطبيق ويب",
+      "work.pet.desc": "تطبيق ويب لتبنّي الحيوانات الأليفة والعناية بها. استبدل هذه الجملة بما يفعله التطبيق فعلًا والمشكلة التي يحلّها.",
+      "work.fit.kind": "مشروع شخصي · تصميم واجهات",
+      "work.fit.desc": "اكتب هنا وصف Fit — ما هو، ولمن، وما الجزء الذي صمّمته أو بنيته منه.",
+      "work.trading.kind": "مفتوح المصدر · دراسة",
+      "work.trading.desc": "إطار عمل متعدّد الوكلاء يعتمد على نماذج اللغة في التداول المالي، أدرسه وأجرّب عليه لأفهم كيف تُوزَّع أدوار الوكلاء وتُستدعى الأدوات ويُقاس الأداء في أنظمة نماذج اللغة الحقيقية.",
+
+      "stack.title": "الأدوات التي أعمل بها",
+      "stack.design": "الواجهات والتصميم",
+      "stack.ml": "تعلّم الآلة",
+      "stack.backend": "الخلفية والأنظمة",
+
+      "bg.title": "الخلفية",
+      "bg.girlscript.role": "قائد فريق مشروع — تدريب",
+      "bg.girlscript.desc": "قدت فريق مشروع ونسّقت عمل المساهمين. استبدل هذا النص بما كنت مسؤولًا عنه ونتيجة ملموسة واحدة.",
+      "bg.edu.degree": "شهادتك",
+      "bg.edu.org": "جامعتك",
+      "bg.edu.desc": "التخصص، وأي تفصيل يستحق الذكر — مشروع تخرّج، أو مجال تركيز، أو مساق ذو صلة.",
+      "bg.self.when": "مستمر",
+      "bg.self.title": "دراسة ذاتية",
+      "bg.self.org": "تعلّم الآلة التطبيقي وأنظمة نماذج اللغة",
+      "bg.self.desc": "أعمل على الاسترجاع المعزّز بالتوليد، ونشر النماذج، وبنية الأنظمة، وأنقل ما أتعلّمه إلى الواجهات التي أبنيها.",
+
+      "contact.title": "تواصل معي",
+      "contact.lede": "أنا منفتح على العمل الحر والوظائف بدوام كامل ومراجعات تجربة الاستخدام والتعاون مفتوح المصدر. أسرع طريقة للوصول إليّ هي البريد الإلكتروني — أخبرني بما تبنيه وسأردّ عليك.",
+      "contact.email": "البريد الإلكتروني",
+      "contact.phone": "الهاتف",
+      "footer.built": "مبنيّ يدويًا بـ HTML وCSS."
+    }
+  };
+
   var root = document.documentElement;
-  var label = document.getElementById('themeLabel');
-  var stored = null;
+  var nav = document.getElementById("siteNav");
+  var menuBtn = document.getElementById("menuBtn");
+  var langBtn = document.getElementById("langToggle");
+  var langLabel = document.getElementById("langLabel");
+  var themeBtn = document.getElementById("themeToggle");
+  var themeLabel = document.getElementById("themeLabel");
+  var metaDesc = document.getElementById("metaDesc");
+  var lang = "en";
 
-  try { stored = localStorage.getItem('theme'); } catch (e) {}
+  function save(key, value) { try { localStorage.setItem(key, value); } catch (e) {} }
+  function load(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
 
-  var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-  var theme = stored || (prefersLight ? 'light' : 'dark');
-  apply(theme);
+  /* ---------- language ---------- */
+  function applyLang(next) {
+    lang = I18N[next] ? next : "en";
+    var dict = I18N[lang];
 
-  function apply(next) {
-    if (next === 'light') { root.setAttribute('data-theme', 'light'); }
-    else { root.removeAttribute('data-theme'); }
-    if (label) { label.textContent = next === 'light' ? 'Dark' : 'Light'; }
+    root.setAttribute("lang", lang);
+    root.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
+    document.title = dict["doc.title"];
+    if (metaDesc) { metaDesc.setAttribute("content", dict["doc.desc"]); }
+
+    document.querySelectorAll("[data-i18n]").forEach(function (el) {
+      var value = dict[el.getAttribute("data-i18n")];
+      if (value !== undefined) { el.innerHTML = value; }
+    });
+
+    document.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
+      var value = dict[el.getAttribute("data-i18n-aria")];
+      if (value !== undefined) { el.setAttribute("aria-label", value); }
+    });
+
+    if (langLabel) { langLabel.textContent = dict["lang.label"]; }
+    syncThemeLabel();
+    syncMenuLabel();
   }
 
-  document.getElementById('themeToggle').addEventListener('click', function () {
-    var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-    apply(next);
-    try { localStorage.setItem('theme', next); } catch (e) {}
+  /* ---------- theme ---------- */
+  function syncThemeLabel() {
+    var isLight = root.getAttribute("data-theme") === "light";
+    if (themeLabel) {
+      themeLabel.textContent = isLight ? I18N[lang]["theme.toDark"] : I18N[lang]["theme.toLight"];
+    }
+  }
+
+  function applyTheme(next) {
+    if (next === "light") { root.setAttribute("data-theme", "light"); }
+    else { root.removeAttribute("data-theme"); }
+    syncThemeLabel();
+  }
+
+  /* ---------- menu ---------- */
+  function syncMenuLabel() {
+    var open = nav.classList.contains("open");
+    menuBtn.setAttribute("aria-label", open ? I18N[lang]["menu.ariaClose"] : I18N[lang]["menu.aria"]);
+  }
+
+  function setMenu(open) {
+    nav.classList.toggle("open", open);
+    menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    syncMenuLabel();
+  }
+
+  menuBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    setMenu(!nav.classList.contains("open"));
   });
 
-  document.getElementById('year').textContent = new Date().getFullYear();
+  nav.addEventListener("click", function (e) {
+    if (e.target.closest("a")) { setMenu(false); }
+  });
+
+  document.addEventListener("click", function (e) {
+    if (nav.classList.contains("open") && !nav.contains(e.target) && !menuBtn.contains(e.target)) {
+      setMenu(false);
+    }
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && nav.classList.contains("open")) { setMenu(false); menuBtn.focus(); }
+  });
+
+  /* ---------- active section highlight ---------- */
+  var links = Array.prototype.slice.call(nav.querySelectorAll("a"));
+  if ("IntersectionObserver" in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) { return; }
+        links.forEach(function (a) {
+          a.classList.toggle("active", a.getAttribute("href") === "#" + entry.target.id);
+        });
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+
+    ["work", "stack", "background", "contact"].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) { observer.observe(el); }
+    });
+  }
+
+  /* ---------- wiring ---------- */
+  langBtn.addEventListener("click", function () {
+    var next = lang === "ar" ? "en" : "ar";
+    applyLang(next);
+    save("lang", next);
+  });
+
+  themeBtn.addEventListener("click", function () {
+    var next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+    applyTheme(next);
+    save("theme", next);
+  });
+
+  /* ---------- boot ---------- */
+  var savedLang = load("lang");
+  if (!savedLang) {
+    savedLang = (navigator.language || "en").toLowerCase().indexOf("ar") === 0 ? "ar" : "en";
+  }
+  applyLang(savedLang);
+
+  var savedTheme = load("theme");
+  if (!savedTheme) {
+    savedTheme = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+  }
+  applyTheme(savedTheme);
+
+  document.getElementById("year").textContent = new Date().getFullYear();
 })();
 </script>
 </body>
